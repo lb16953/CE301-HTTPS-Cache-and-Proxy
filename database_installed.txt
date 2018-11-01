@@ -1,0 +1,147 @@
+--------------
+DROP DATABASE IF EXISTS create_tables
+--------------
+
+Query OK, 2 rows affected (0.15 sec)
+
+--------------
+CREATE DATABASE create_tables
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+CREATE TABLE IF NOT EXISTS `testing` (
+  `id1` int(10) unsigned NOT NULL auto_increment,
+  `string1` varchar(255) NOT NULL default '',
+  `int12` integer(10) NOT NULL default 0,
+  `bool1` TINYINT(1) COLLATE utf8_general_ci NOT NULL default 0,
+  `char1` char(1) NOT NULL default 'a',
+  PRIMARY KEY  (`id1`)
+)
+--------------
+
+Query OK, 0 rows affected (0.12 sec)
+
+--------------
+INSERT INTO testing VALUES (1, 'word', 1234, 0, 'a')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing VALUES (2, 'ord', 12345, 1, 'b')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing VALUES (3, 'rd', 12346, 0, 'c')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing VALUES (4, 'd', 12347, 1, 'd')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing VALUES (5, '0d', 12348, 0, 'e')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+CREATE TABLE IF NOT EXISTS `testing2` (
+  `id1` int(10) unsigned NOT NULL auto_increment,
+  `string2` varchar(255) NOT NULL default '',
+  `int123` integer(10) NOT NULL default 0,
+  `bool12` TINYINT(1) COLLATE utf8_general_ci NOT NULL default 0,
+  `char12` char(1) NOT NULL default 'a',
+  PRIMARY KEY  (`id1`)
+)
+--------------
+
+Query OK, 0 rows affected (0.05 sec)
+
+--------------
+INSERT INTO testing2 VALUES (1, 'word2', 12342, 1, 'f')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing2 VALUES (2, 'ord2', 123452, 0, 'g')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing2 VALUES (3, 'rd2', 123462, 1, 'h')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing2 VALUES (4, 'd2', 123472, 0, 'i')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+INSERT INTO testing2 VALUES (5, '0d2', 123482, 1, 'j')
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT id1, string1 FROM testing WHERE id1 = 1
+--------------
+
++-----+---------+
+| id1 | string1 |
++-----+---------+
+|   1 | word    |
++-----+---------+
+1 row in set (0.00 sec)
+
+--------------
+SELECT testing.id1, string2 FROM testing, testing2 WHERE testing.id1 != 1 AND (testing.id1 = testing2.id1)
+--------------
+
++-----+---------+
+| id1 | string2 |
++-----+---------+
+|   2 | ord2    |
+|   3 | rd2     |
+|   4 | d2      |
+|   5 | 0d2     |
++-----+---------+
+4 rows in set (0.00 sec)
+
+--------------
+SELECT testing.id1, string2 FROM testing, testing2 WHERE string2 LIKE 'w%' AND (testing.id1 = testing2.id1)
+--------------
+
++-----+---------+
+| id1 | string2 |
++-----+---------+
+|   1 | word2   |
++-----+---------+
+1 row in set (0.00 sec)
+
+--------------
+SELECT testing.id1, string1, string2, bool1, char12 FROM testing, testing2 WHERE testing2.id1 > 1 AND (testing.id1 = testing2.id1) AND (bool1 = 1)
+--------------
+
++-----+---------+---------+-------+--------+
+| id1 | string1 | string2 | bool1 | char12 |
++-----+---------+---------+-------+--------+
+|   2 | ord     | ord2    |     1 | g      |
+|   4 | d       | d2      |     1 | i      |
++-----+---------+---------+-------+--------+
+2 rows in set (0.00 sec)
+
+Bye
