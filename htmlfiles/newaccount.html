@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!-- input restrictions needed -->
+
+<h1>Happy Car</h1><a href="userlogin.html"><button class="btnLogout">Log Out</button></a>
+<p><a href="newaccount.html"><button class="btnQuery">Get A Quote</button></a>
+<a href="useraccount.html"><button class="btnAccount">My Accounts</button></a></p>
+
+<!--First form for calculating costs-->
+
+<form method="post">
+  <fieldset>
+    <legend>Create Policy:</legend>
+    Enter Registration:
+    <input type="text" name="eRegistration" value="AB12 3CD" maxlength="8"><br><br>
+    Make:
+    <input type="text" name="eMake" value="Ford" maxlength="12"><br><br>
+    Model:
+    <input type="text" name="eModel" value="Civic" maxlength="12"><br><br>
+    Transmission:
+    <input type="text" name="eTransmission" value="Manual" maxlength="12"><br><br>
+    Fuel:
+    <input type="text" name="eFuel" value="Diesel" maxlength="12"><br><br>
+    Registration Year:
+    <input type="text" name="eRegYear" value="1988" maxlength="4"><br><br>
+    Purchased?:
+    <input type="radio" name="ePurchased" value="Yes"> Yes 
+<input type="radio" name="ePurchased" value="No" checked> No<br><br>
+    Purchase Date:
+    <select name="cars">
+      <option value="ford">Ford</option>
+      <option value="audi">Audi</option>
+      <option value="mitsu">Mitsubishi</option>
+      <option value="volvo">Volvo</option>
+    </select><br><br>
+    Car Value(£):
+    <input type="number" name="eValue" value="1000" maxlength="12" min="100" max="999999999999"><br><br>
+    Security Features:
+    <select name="security">
+      <option value="none">-----</option>
+      <option value="tracking">Tracking Hardware</option>
+      <option value="windowMarks">Window Marks</option>
+      <option value="specialEngine">Special Engine</option>
+    </select><br><br>
+    Modified?:
+    <input type="radio" name="eModded" value="Yes"> Yes 
+<input type="radio" name="eModded" value="No" checked> No<br><br>
+    Title:
+    <select name="title">
+      <option value="sir">Sir</option>
+      <option value="mr">Mr</option>
+      <option value="mrs">Mrs</option>
+      <option value="ms">Ms</option>
+    </select><br><br>
+    Claim Free Years?:
+    <input type="radio" name="eFreeYears" value="Yes"> Yes 
+<input type="radio" name="eFreeYears" value="No" checked> No<br><br>
+    <input type="submit" name="Calculate"><br>	<!--Button needs to generate values for the next two fields-->
+  </fieldset>
+</form>
+
+<!--Bottom two lines need to display the generated costs(uneditable)-->
+
+<p>Total Annual Cost:</p>
+<p>Total Monthly Cost:</p>
+
+<!--Second form for submitting data to database-->
+
+<form method="post">
+  <fieldset>
+    <legend>Confirm Payment:</legend>
+    Payment Method:
+    <select name="payMethod">	<!--Store with the payment?-->
+      <option value="sir">Annually</option>
+      <option value="mr">Monthly</option>
+    </select><br><br>
+    Card Number:
+    <input type="text" name="eCardNumber" value="1111 2222 3333 4444" maxlength="19"><br><br>
+    Expiration Date:
+    <input type="month" name="eExpiration" value="09/18"><br><br><!--Not supported by Safari-->
+    Name On Card:
+    <input type="text" name="eCardName" value="MR J J DOE"><br><br>
+    <input type="submit" name="Confirm Payment"><br>	<!--Button needs to send details from both forms to database, check for empty fields-->
+  </fieldset>
+</form>
+
+</body>
+</html>
